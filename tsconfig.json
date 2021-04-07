@@ -1,37 +1,3 @@
-/*{
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2018",
-        "outDir": "out",
-        "lib": [
-            "es7"
-        ],
-        "sourceMap": true,
-        "rootDir": ".",
-        "alwaysStrict": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": false, // TODO
-        "noImplicitReturns": false, // TODO
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": false, // TODO
-        "strictNullChecks": false, // TODO
-        "strict": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": [
-                "node_modules/vscode/*",
-                "*"
-            ]
-        },
-        "skipLibCheck": true // https://github.com/Azure/ms-rest-js/issues/367
-    },
-    "exclude": [
-        "node_modules",
-        ".vscode-test",
-        "gulpfile.ts"
-    ]
-}*/
 {
     "compilerOptions": {
         "module": "commonjs",
@@ -47,15 +13,11 @@
         "noFallthroughCasesInSwitch": true,
         "noImplicitThis": true,
         "noUnusedLocals": false, // ESLint takes care of this for us
+        "noUnusedParameters": false, // ESLint takes care of this for us
         "noImplicitAny": false, // TODO
         "noImplicitReturns": false, // TODO
-        "noUnusedParameters": false, // TODO
         "strictNullChecks": false, // TODO
-        "skipLibCheck": true // Ignore typing issues in libraries
-        /* Additional Checks */
-        // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
-        // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
-        // "noUnusedParameters": true,  /* Report errors on unused parameters. */
+        // "skipLibCheck": true // Ignore typing issues in libraries
     },
     "exclude": [
         "node_modules",
