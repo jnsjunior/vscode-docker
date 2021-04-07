@@ -126,7 +126,7 @@
         "onView:vscode-docker.views.dockerContexts",
         "onView:vscode-docker.views.help"
     ],
-    "main": "dist/extension.bundle",
+    "main": "main",
     "contributes": {
         "menus": {
             "commandPalette": [

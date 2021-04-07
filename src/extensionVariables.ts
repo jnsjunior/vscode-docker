@@ -59,5 +59,6 @@ export namespace ext {
     export let contextsTreeView: TreeView<AzExtTreeItem>;
     export let contextsRoot: ContextsTreeItem;
 
-    export const runningTests: boolean = false;
+    // eslint-disable-next-line prefer-const
+    export let runningTests: boolean = false;
 }
