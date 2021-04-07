@@ -2732,7 +2732,7 @@
         "ts-loader": "^8.0.14",
         "typescript": "^4.1.4",
         "umd-compat-loader": "^2.1.2",
-        "vsce": "^1.85.0",
+        "vsce": "^1.87.1",
         "vscode-codicons": "^0.0.16",
         "vscode-nls-dev": "^3.3.2",
         "vscode-test": "^1.5.0",
