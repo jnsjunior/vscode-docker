@@ -25,5 +25,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm test
-    - run: vsce package
+    - run: npm ci
+    # - run: npm test # TODO: reenable this
+    - run: npx vsce package
+    - name: Upload VSIX
+      uses: actions/upload-artifact@v2
+      with:
+        name: VSIX # TODO: can we get it to use the file name?
+        path: vscode-docker-*.vsix
