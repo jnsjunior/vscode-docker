@@ -131,7 +131,6 @@ const config = {
         new CopyPlugin({
             patterns: [
                 './node_modules/vscode-azureextensionui/resources/**/*.svg',
-                './node_modules/vscode-azureappservice/resources/**/*.svg',
                 './node_modules/vscode-codicons/dist/codicon.{css,ttf}',
             ],
         }),
