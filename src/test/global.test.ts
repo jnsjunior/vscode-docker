@@ -61,11 +61,6 @@ export function testInEmptyFolder(name: string, func?: mocha.AsyncFunc): void {
 suiteSetup(async function (this: mocha.Context): Promise<void> {
     this.timeout(60 * 1000);
     console.log('global.test.ts: suiteSetup');
-
-    // TODO: this doesn't work because this is importing ext from out/extensionVariables, but the extension is loading from dist
-    // ext probably needs to be either exposed via a command or returned as the extension API, when running tests
-    ext.runningTests = true;
-
     console.log("Refreshing tree to make sure extension is activated");
     await vscode.commands.executeCommand('vscode-docker.registries.refresh');
     console.log("Refresh done");
