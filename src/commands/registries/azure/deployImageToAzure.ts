@@ -30,8 +30,11 @@ export async function deployImageToAzure(context: IActionContext, node?: RemoteT
         node = await ext.registriesTree.showTreeItemPicker<RemoteTagTreeItem>([registryExpectedContextValues.dockerHub.tag, registryExpectedContextValues.dockerV2.tag], context);
     }
 
-    const vscAzureAppService = await import('vscode-azureappservice');
+    const startTime = process.hrtime.bigint();
+    const vscAzureAppService = await import(/* webpackChunkName: "vscode-azureappservice" */ 'vscode-azureappservice');
     vscAzureAppService.registerAppServiceExtensionVariables(ext);
+    const endTime = process.hrtime.bigint();
+    void window.showInformationMessage(`Elapsed ${(endTime - startTime) / BigInt(1e6)} ms loading vscode-azureappservice`);
 
     const wizardContext: IActionContext & Partial<IAppServiceWizardContext> = {
         ...context,

@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { WebSiteManagementModels } from '@azure/arm-appservice';
+import { WebSiteManagementModels } from '@azure/arm-appservice'; // These are only dev-time imports so don't need to be lazy
 import { ContainerRegistryManagementModels as AcrModels } from '@azure/arm-containerregistry';
 import * as vscode from "vscode";
 import { IAppServiceWizardContext } from "vscode-azureappservice"; // These are only dev-time imports so don't need to be lazy
@@ -29,7 +29,7 @@ export class DockerWebhookCreateStep extends AzureWizardExecuteStep<IAppServiceW
         message?: string;
         increment?: number;
     }>): Promise<void> {
-        const vscAzureAppService = await import('vscode-azureappservice');
+        const vscAzureAppService = await import(/* webpackChunkName: "vscode-azureappservice" */ 'vscode-azureappservice');
         vscAzureAppService.registerAppServiceExtensionVariables(ext);
         const site: WebSiteManagementModels.Site = nonNullProp(context, 'site');
         const siteClient = new vscAzureAppService.SiteClient(site, context);
@@ -81,7 +81,7 @@ export class DockerWebhookCreateStep extends AzureWizardExecuteStep<IAppServiceW
 
         // variables derived from the container registry
         const registryTreeItem: AzureRegistryTreeItem = (<AzureRepositoryTreeItem>node.parent).parent;
-        const armContainerRegistry = await import('@azure/arm-containerregistry');
+        const armContainerRegistry = await import(/* webpackChunkName: "@azure/arm-containerregistry" */ '@azure/arm-containerregistry');
         const crmClient = createAzureClient(registryTreeItem.parent.root, armContainerRegistry.ContainerRegistryManagementClient);
         const webhookCreateParameters: AcrModels.WebhookCreateParameters = {
             location: registryTreeItem.registryLocation,

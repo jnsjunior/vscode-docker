@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { WebSiteManagementClient, WebSiteManagementModels } from '@azure/arm-appservice'; // These are only dev-time imports so don't need to be lazy
-import { Progress } from "vscode";
+import { Progress, window } from "vscode";
 import { IAppServiceWizardContext } from "vscode-azureappservice"; // These are only dev-time imports so don't need to be lazy
 import { AzureWizardExecuteStep, createAzureClient } from "vscode-azureextensionui";
 import { ext } from "../../../extensionVariables";
@@ -23,7 +23,10 @@ export class DockerSiteCreateStep extends AzureWizardExecuteStep<IAppServiceWiza
         ext.outputChannel.appendLine(creatingNewApp);
         progress.report({ message: creatingNewApp });
 
-        const armAppService = await import('@azure/arm-appservice');
+        const startTime = process.hrtime.bigint();
+        const armAppService = await import(/* webpackChunkName: "@azure/arm-appservice" */ '@azure/arm-appservice');
+        const endTime = process.hrtime.bigint();
+        void window.showInformationMessage(`Elapsed ${(endTime - startTime) / BigInt(1e6)} ms loading vscode-azureappservice`);
         const client: WebSiteManagementClient = createAzureClient(context, armAppService.WebSiteManagementClient);
         context.site = await client.webApps.createOrUpdate(nonNullValueAndProp(context.resourceGroup, 'name'), nonNullProp(context, 'newSiteName'), {
             name: context.newSiteName,

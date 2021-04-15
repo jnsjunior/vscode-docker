@@ -23,9 +23,9 @@ export class DockerAssignAcrPullRoleStep extends AzureWizardExecuteStep<IAppServ
         ext.outputChannel.appendLine(message);
         progress.report({ message: message });
 
-        const armAuth = await import('@azure/arm-authorization');
-        const armContainerRegistry = await import('@azure/arm-containerregistry');
-        const armAppService = await import('@azure/arm-appservice');
+        const armAuth = await import(/* webpackChunkName: "@azure/arm-authorization" */ '@azure/arm-authorization');
+        const armContainerRegistry = await import(/* webpackChunkName: "@azure/arm-containerregistry" */ '@azure/arm-containerregistry');
+        const armAppService = await import(/* webpackChunkName: "@azure/arm-appservice" */ '@azure/arm-appservice');
         const authClient = createAzureClient(context, armAuth.AuthorizationManagementClient);
         const crmClient = createAzureClient(context, armContainerRegistry.ContainerRegistryManagementClient);
         const appSvcClient = createAzureClient(context, armAppService.WebSiteManagementClient);
@@ -61,7 +61,7 @@ export class DockerAssignAcrPullRoleStep extends AzureWizardExecuteStep<IAppServ
         }
 
         // 4. On the registry, assign the AcrPull role to the principal representing the website
-        await authClient.roleAssignments.create(registry.id, (await import('uuid')).v4(), {
+        await authClient.roleAssignments.create(registry.id, (await import(/* webpackChunkName: "uuid" */ 'uuid')).v4(), {
             principalId: siteInfo.identity.principalId,
             roleDefinitionId: acrPullRoleDefinition.id,
             principalType: 'ServicePrincipal',

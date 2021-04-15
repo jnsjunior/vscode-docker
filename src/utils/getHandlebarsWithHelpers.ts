@@ -14,7 +14,10 @@ import { PlatformOS } from './platform';
 let handlebars: typeof import('handlebars') | undefined;
 export async function getHandlebarsWithHelpers(): Promise<typeof import('handlebars')> {
     if (!handlebars) {
-        handlebars = await import('handlebars');
+        const startTime = process.hrtime.bigint();
+        handlebars = await import(/* webpackChunkName: "handlebars" */ 'handlebars');
+        const endTime = process.hrtime.bigint();
+        void vscode.window.showInformationMessage(`Elapsed ${(endTime - startTime) / BigInt(1e6)} loading handlebars`);
 
         handlebars.registerHelper('workspaceRelative', (wizardContext: ScaffoldingWizardContext, absolutePath: string, platform: PlatformOS = 'Linux') => {
             const workspaceFolder: vscode.WorkspaceFolder = wizardContext.workspaceFolder;

@@ -24,8 +24,17 @@ const config = {
     cache: true, // Makes 'watch' builds way faster after the first full build
 
     entry: {
+        'handlebars': 'handlebars',
         './extension.bundle': './src/extension.ts',
         './dockerfile-language-server-nodejs/lib/server': './node_modules/dockerfile-language-server-nodejs/lib/server.js',
+        'vscode-azureappservice': {
+            import: 'vscode-azureappservice',
+            dependOn: ['@azure/arm-appservice'],
+        },
+        '@azure/arm-appservice': '@azure/arm-appservice',
+        '@azure/arm-containerregistry': '@azure/arm-containerregistry',
+        '@azure/arm-authorization': '@azure/arm-authorization',
+        'uuid': 'uuid',
     }, // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
     output: {
         // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
@@ -82,7 +91,10 @@ const config = {
                     /* eslint-enable @typescript-eslint/naming-convention */
                 }
             }),
-        ]
+        ],
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     ignoreWarnings: [
         // Suppress some webpack warnings caused by dependencies
