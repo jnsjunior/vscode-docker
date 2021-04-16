@@ -5,7 +5,7 @@
 
 import { runWithExtensionSettings } from '../runWithExtensionSettings';
 import { CommandTemplate, selectCommandTemplate, defaultCommandTemplates, TemplatePicker } from '../../commands/selectCommandTemplate';
-import { DockerContext, isNewContextType } from '../../docker/Contexts';
+import { ContextType, DockerContext, isNewContextType } from '../../docker/Contexts';
 import { ext } from '../../extensionVariables';
 import { IActionContext, IAzureQuickPickItem } from 'vscode-azureextensionui';
 import assert = require('assert');
@@ -558,7 +558,7 @@ suite("(unit) selectCommandTemplate", () => {
         assert.equal(result.command, 'test', 'Incorrect command selected');
 
         // Quick aside: validate that the context manager thinks an unknown context is new
-        assert.equal(isNewContextType('abc'), true, 'Incorrect context type identification');
+        assert.equal(isNewContextType('abc' as ContextType), true, 'Incorrect context type identification');
         assert.equal(result.context.telemetry.properties.isDefaultCommand, 'false', 'Wrong value for isDefaultCommand');
         assert.equal(result.context.telemetry.properties.isCommandRegexMatched, 'false', 'Wrong value for isCommandRegexMatched');
         assert.equal(result.context.telemetry.properties.commandContextType, '[]', 'Wrong value for commandContextType');
@@ -595,7 +595,7 @@ async function runWithCommandSetting(
         },
 
         getCurrentContextType: async () => {
-            return Promise.resolve(contextType);
+            return Promise.resolve(contextType as ContextType);
         }
     };
 
