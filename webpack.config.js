@@ -6,7 +6,7 @@
 // @ts-check // Check this file for typing issues (helps prevent mistakes in options passed)
 /* eslint-disable no-undef */ // Ignore the fact that the engine (which is webpack) is unknown
 
-// 'use strict';
+'use strict';
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
