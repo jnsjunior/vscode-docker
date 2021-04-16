@@ -5,6 +5,8 @@
 
 "use strict";
 
+/* eslint-disable no-undef */ // Ignore the fact that the engine (which is VSCode) is unknown by the linter
+
 // This is the extension entrypoint, which imports extension.bundle.js, the actual extension code.
 //
 // This is in a separate file so we can properly measure extension.bundle.js load time.
@@ -31,3 +33,5 @@ exports.activate = activate;
 exports.deactivate = deactivate;
 
 perfStats.loadEndTime = Date.now();
+
+/* eslint-enable no-undef */
