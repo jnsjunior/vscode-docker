@@ -2737,6 +2737,7 @@
         "vscode-nls-dev": "^3.3.2",
         "vscode-test": "^1.5.2",
         "webpack": "^5.31.2",
+        "webpack-bundle-analyzer": "^4.4.1",
         "webpack-cli": "^4.6.0"
     },
     "dependencies": {
